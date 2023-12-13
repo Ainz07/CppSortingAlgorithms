@@ -1,2 +1,3 @@
 # Data_Structures
-All Types of Basic Functions Possible on Various Data Structures in C++
+All Types of Basic Sorting Algorithms
+Possible on Various Data Structures in C++
