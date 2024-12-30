@@ -1,4 +1,4 @@
-// This is a code on how to do selection Sort using basic loops.
+// This is a code on how to do selection Sort using recursion.
 
 #include <iostream>
 using namespace std;
