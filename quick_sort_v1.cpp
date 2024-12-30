@@ -5,19 +5,15 @@ using namespace std;
 
 void quickSort(int arr[], int low, int high)
 {
-    if (low >= high)
-        return;
+    if (low >= high) return;
     int pivot = arr[high];
-    int i = low - 1;
-    int j = high;
+    int i = low - 1, j = high;
+    
     while (i < j)
     {
-        while (arr[++i] < pivot)
-            ;
-        while (j >= 0 && arr[--j] > pivot)
-            ;
-        if (i < j)
-            swap(arr[i], arr[j]);
+        while (arr[++i] < pivot) ;
+        while (j >= 0 && arr[--j] > pivot) ;
+        if (i < j) swap(arr[i], arr[j]);
     }
     swap(arr[i], arr[high]);
 
@@ -25,26 +21,17 @@ void quickSort(int arr[], int low, int high)
     quickSort(arr, i + 1, high);
 }
 
-void print(int arr[], int n)
-{
-    for (int i = 0; i <= n - 1; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
 int main()
 {
-    int n;
+    int n; 
     cin >> n;
+    
     int a[n];
-    for (int i = 0; i <= n - 1; i++)
-    {
-        cin >> a[i];
-    }
-
+    for (int i = 0; i < n; ++i) cin >> a[i];
+    
     quickSort(a, 0, n - 1);
 
-    print(a, n);
+    for (int i = 0; i < n; ++i) cout << a[i] << " ";
+    
     return 0;
 }

@@ -3,13 +3,13 @@
 #include <iostream>
 using namespace std;
 
-void merge(int input[], int first_val, int mid_val, int last_val)
+void merge(int input[], int start, int mid, int end)
 {
-    int output[last_val - first_val + 1];
-    int i = first_val;
-    int j = mid_val + 1;
+    int output[end - start + 1];
+    int i = start;
+    int j = mid + 1;
     int k = 0;
-    while (i <= mid_val && j <= last_val)
+    while (i <= mid && j <= end)
     {
         if (input[i] < input[j])
         {
@@ -25,13 +25,13 @@ void merge(int input[], int first_val, int mid_val, int last_val)
         }
     }
 
-    while (i <= mid_val)
+    while (i <= mid)
     {
         output[k] = input[i];
         i++;
         k++;
     }
-    while (j <= last_val)
+    while (j <= end)
     {
         output[k] = input[j];
         j++;
@@ -39,44 +39,33 @@ void merge(int input[], int first_val, int mid_val, int last_val)
     }
 
     int n = 0;
-    for (int i = first_val; i <= last_val; i++)
+    for (int i = start; i <= end; i++)
     {
         input[i] = output[n];
         n++;
     }
 }
 
-void mergeSort(int input[], int first_val, int last_val)
+void mergeSort(int input[], int start, int end)
 {
-    if (first_val >= last_val)
-        return;
-    int mid_val = (first_val + last_val) / 2;
-    mergeSort(input, first_val, mid_val);
-    mergeSort(input, mid_val + 1, last_val);
-    merge(input, first_val, mid_val, last_val);
-}
-
-void print(int arr[], int n)
-{
-    for (int i = 0; i <= n - 1; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    if (start >= end) return;
+    int mid = (start + end) / 2;
+    mergeSort(input, start, mid);
+    mergeSort(input, mid + 1, end);
+    merge(input, start, mid, end);
 }
 
 int main()
 {
-    int n;
+    int n; 
     cin >> n;
+    
     int a[n];
-    for (int i = 0; i < n; i++)
-    {
-        cin >> a[i];
-    }
-
+    for (int i = 0; i < n; ++i) cin >> a[i];
+    
     mergeSort(a, 0, n - 1);
 
-    print(a, n);
+    for (int i = 0; i < n; ++i) cout << a[i] << " ";
+    
     return 0;
 }
